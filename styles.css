@@ -119,8 +119,12 @@ body {
   bottom: 0;
   left: 0;
   z-index: 100;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border-right: 1px solid rgba(255,255,255,0.05);
+}
+
+.sidebar.collapsed {
+  transform: translateX(-100%) !important;
 }
 
 .sidebar-header {
@@ -131,7 +135,28 @@ body {
 .sidebar-brand {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 12px;
+}
+
+.sidebar-collapse-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #cbd5e1;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  transition: all 0.2s ease;
+}
+
+.sidebar-collapse-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  color: #fff;
 }
 
 .brand-logo {
@@ -343,6 +368,17 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1), width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  width: calc(100% - 320px);
+}
+
+.main-wrapper.full-width {
+  margin-left: 0 !important;
+  width: 100% !important;
+}
+
+.main-wrapper.full-width .content-body {
+  max-width: 1400px;
 }
 
 /* Top Sticky Header */
@@ -397,6 +433,92 @@ body {
 .btn-header:hover {
   background: var(--primary);
   color: #fff;
+}
+
+/* Language Switcher Component */
+.lang-switcher {
+  display: inline-flex;
+  align-items: center;
+  background: var(--bg-main);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 3px;
+  gap: 3px;
+}
+
+.lang-btn {
+  border: none;
+  background: transparent;
+  padding: 5px 10px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.lang-btn:hover {
+  color: var(--text-main);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="dark"] .lang-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.lang-btn.active {
+  background: var(--primary);
+  color: #ffffff !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+/* Visibility Control for Bilingual System */
+html[data-lang="vi"] .lang-en {
+  display: none !important;
+}
+
+html[data-lang="en"] .lang-vi {
+  display: none !important;
+}
+
+/* Default display states */
+span.lang-vi, span.lang-en {
+  display: inline;
+}
+div.lang-vi, div.lang-en, p.lang-vi, p.lang-en {
+  display: block;
+}
+
+/* Bilingual mode styling */
+html[data-lang="bi"] span.lang-vi,
+html[data-lang="bi"] span.lang-en {
+  display: inline !important;
+}
+
+html[data-lang="bi"] span.lang-en::before {
+  content: " / ";
+  color: var(--text-muted);
+  opacity: 0.7;
+  font-weight: normal;
+}
+
+html[data-lang="bi"] div.lang-vi,
+html[data-lang="bi"] p.lang-vi {
+  display: block !important;
+}
+
+html[data-lang="bi"] div.lang-en,
+html[data-lang="bi"] p.lang-en {
+  display: block !important;
+  color: var(--text-muted);
+  font-size: 0.92em;
+  border-top: 1px dashed var(--border);
+  padding-top: 4px;
+  margin-top: 4px;
 }
 
 /* Content Container */
@@ -1067,29 +1189,63 @@ body {
   display: block;
 }
 
+/* Sidebar Toggle Button (Always visible on all screens) */
+.menu-toggle-btn {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  background: var(--bg-main);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 1.05rem;
+  color: var(--text-main);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.menu-toggle-btn:hover {
+  background: var(--primary-light);
+  color: var(--primary);
+  border-color: var(--primary);
+  transform: scale(1.05);
+}
+
+/* Sidebar Overlay for mobile / drawer view */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+  z-index: 95;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 /* Mobile Responsiveness */
 @media (max-width: 1024px) {
   .sidebar {
     transform: translateX(-100%);
   }
-  .sidebar.open {
+  .sidebar:not(.collapsed) {
     transform: translateX(0);
+    box-shadow: var(--shadow-lg);
   }
   .main-wrapper {
-    margin-left: 0;
+    margin-left: 0 !important;
+    width: 100% !important;
   }
-  .menu-toggle-btn {
-    display: block !important;
-  }
-}
-
-.menu-toggle-btn {
-  display: none;
-  background: none;
-  border: none;
-  font-size: 1.4rem;
-  color: var(--text-main);
-  cursor: pointer;
 }
 
 /* Print Friendly Styles */

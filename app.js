@@ -527,6 +527,8 @@ const quizData = [
 
 // 4. Core Guidebook Engine
 document.addEventListener("DOMContentLoaded", () => {
+  initLanguageSwitcher();
+  initSidebarToggle();
   initStudentIdReplacer();
   initTheme();
   initReadingProgress();
@@ -536,6 +538,124 @@ document.addEventListener("DOMContentLoaded", () => {
   initCheckpoints();
   initGlobalSearch();
 });
+
+// Language Switcher (VI / EN / Bilingual)
+function initLanguageSwitcher() {
+  const langBtns = document.querySelectorAll(".lang-btn");
+  const globalSearch = document.getElementById("global-search-input");
+  const finderSearch = document.getElementById("finder-search-input");
+
+  function setLanguage(lang) {
+    document.documentElement.setAttribute("data-lang", lang);
+    localStorage.setItem("sap_guide_lang", lang);
+
+    langBtns.forEach(btn => {
+      if (btn.dataset.lang === lang) {
+        btn.classList.add("active");
+      } else {
+        btn.classList.remove("active");
+      }
+    });
+
+    if (lang === "en") {
+      if (globalSearch) globalSearch.placeholder = "Search steps, app names, T-codes...";
+      if (finderSearch) finderSearch.placeholder = "Enter app name, T-code (e.g. MIGO, VA01, F-53) or role...";
+    } else {
+      if (globalSearch) globalSearch.placeholder = "Tìm kiếm bước, mã app, T-code...";
+      if (finderSearch) finderSearch.placeholder = "Nhập tên ứng dụng, mã T-code (vd: MIGO, VA01, F-53, BP) hoặc vai trò...";
+    }
+  }
+
+  const savedLang = localStorage.getItem("sap_guide_lang") || "vi";
+  setLanguage(savedLang);
+
+  langBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      setLanguage(btn.dataset.lang);
+    });
+  });
+}
+
+// Sidebar Toggle (Show / Hide)
+function initSidebarToggle() {
+  const sidebar = document.getElementById("sidebar");
+  const mainWrapper = document.querySelector(".main-wrapper");
+  const menuToggle = document.getElementById("menu-toggle");
+  const sidebarCloseBtn = document.getElementById("sidebar-close-btn");
+  const overlay = document.getElementById("sidebar-overlay");
+
+  if (!sidebar || !mainWrapper) return;
+
+  function setSidebarState(collapsed) {
+    if (collapsed) {
+      sidebar.classList.add("collapsed");
+      mainWrapper.classList.add("full-width");
+      if (overlay) overlay.classList.remove("active");
+      localStorage.setItem("sap_sidebar_collapsed", "true");
+      if (menuToggle) {
+        menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+        menuToggle.setAttribute("title", "Mở thanh bên (Ctrl+B)");
+      }
+    } else {
+      sidebar.classList.remove("collapsed");
+      mainWrapper.classList.remove("full-width");
+      if (window.innerWidth <= 1024 && overlay) {
+        overlay.classList.add("active");
+      }
+      localStorage.setItem("sap_sidebar_collapsed", "false");
+      if (menuToggle) {
+        menuToggle.innerHTML = '<i class="fas fa-indent"></i>';
+        menuToggle.setAttribute("title", "Thu gọn thanh bên (Ctrl+B)");
+      }
+    }
+  }
+
+  // Restore saved state or default
+  const savedCollapsed = localStorage.getItem("sap_sidebar_collapsed");
+  if (savedCollapsed === "true" || (savedCollapsed === null && window.innerWidth <= 1024)) {
+    setSidebarState(true);
+  } else {
+    setSidebarState(false);
+  }
+
+  if (menuToggle) {
+    menuToggle.addEventListener("click", () => {
+      const isCollapsed = sidebar.classList.contains("collapsed");
+      setSidebarState(!isCollapsed);
+    });
+  }
+
+  if (sidebarCloseBtn) {
+    sidebarCloseBtn.addEventListener("click", () => {
+      setSidebarState(true);
+    });
+  }
+
+  if (overlay) {
+    overlay.addEventListener("click", () => {
+      setSidebarState(true);
+    });
+  }
+
+  // Keyboard shortcut Ctrl + B
+  document.addEventListener("keydown", (e) => {
+    if ((e.ctrlKey || e.metaKey) && (e.key === 'b' || e.key === 'B')) {
+      e.preventDefault();
+      const isCollapsed = sidebar.classList.contains("collapsed");
+      setSidebarState(!isCollapsed);
+    }
+  });
+
+  // On mobile, auto-collapse sidebar when a navigation item is clicked
+  const navItems = document.querySelectorAll(".sidebar-nav .nav-item");
+  navItems.forEach(item => {
+    item.addEventListener("click", () => {
+      if (window.innerWidth <= 1024) {
+        setSidebarState(true);
+      }
+    });
+  });
+}
 
 // Student ID Replacer
 function initStudentIdReplacer() {
@@ -623,10 +743,13 @@ function initFioriAppFinder() {
         </div>
         <div class="app-tile-title">${app.name}</div>
         <div class="app-tile-role"><i class="fas fa-user-tie"></i> ${app.role}</div>
-        <div class="app-tile-desc">${app.desc}</div>
+        <div class="app-tile-desc">
+          <span class="lang-vi">${app.desc}</span>
+          <span class="lang-en">${app.descEn || app.desc}</span>
+        </div>
         <div style="margin-top: 12px; text-align: right;">
           <a href="#${app.stepId}" class="btn-header" style="padding: 4px 10px; font-size: 0.75rem;">
-            Đến bước hướng dẫn <i class="fas fa-arrow-right"></i>
+            <span class="lang-vi">Đến bước hướng dẫn</span><span class="lang-en">Go to Guide</span> <i class="fas fa-arrow-right"></i>
           </a>
         </div>
       </div>
@@ -679,7 +802,7 @@ function initTAccountsVisualizer() {
           </div>
           <div class="t-account-body">
             <div class="t-account-side debit">
-              <div class="t-side-label">Nợ (Debit)</div>
+              <div class="t-side-label"><span class="lang-vi">Nợ (Debit)</span><span class="lang-en">Debit (Dr)</span></div>
               ${acc.debits.map(d => `
                 <div class="t-entry dr">
                   <span>${d.label}</span>
@@ -688,7 +811,7 @@ function initTAccountsVisualizer() {
               `).join("")}
             </div>
             <div class="t-account-side credit">
-              <div class="t-side-label">Có (Credit)</div>
+              <div class="t-side-label"><span class="lang-vi">Có (Credit)</span><span class="lang-en">Credit (Cr)</span></div>
               ${acc.credits.map(c => `
                 <div class="t-entry cr">
                   <span>${c.label}</span>
@@ -698,7 +821,7 @@ function initTAccountsVisualizer() {
             </div>
           </div>
           <div style="background: var(--bg-main); padding: 8px 12px; font-size: 0.8rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between;">
-            <span style="color: var(--text-muted);">Số dư cuối kỳ:</span>
+            <span style="color: var(--text-muted);"><span class="lang-vi">Số dư cuối kỳ:</span><span class="lang-en">Ending Balance:</span></span>
             <strong style="color: var(--primary);">${acc.balance}</strong>
           </div>
         </div>
@@ -731,7 +854,7 @@ function initQuiz() {
   function renderQuiz() {
     container.innerHTML = quizData.map((q, idx) => `
       <div class="quiz-card" id="quiz-card-${q.id}">
-        <div class="quiz-question-num">Câu hỏi ${idx + 1} / ${quizData.length}</div>
+        <div class="quiz-question-num"><span class="lang-vi">Câu hỏi</span><span class="lang-en">Question</span> ${idx + 1} / ${quizData.length}</div>
         <div class="quiz-question-text">${q.question}</div>
         <div class="quiz-options">
           ${q.options.map((opt, oIdx) => `
@@ -741,7 +864,7 @@ function initQuiz() {
           `).join("")}
         </div>
         <div class="quiz-explanation" id="quiz-exp-${q.id}">
-          <strong>💡 Giải thích chi tiết:</strong> ${q.explanation}
+          <strong>💡 <span class="lang-vi">Giải thích chi tiết:</span><span class="lang-en">Detailed Explanation:</span></strong> ${q.explanation}
         </div>
       </div>
     `).join("");
@@ -795,13 +918,13 @@ function initQuiz() {
     scoreBox.innerHTML = `
       <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 15px 20px; display: flex; align-items: center; justify-content: space-between;">
         <div>
-          <div style="font-size: 0.85rem; color: var(--text-muted);">Kết quả ôn tập của bạn:</div>
+          <div style="font-size: 0.85rem; color: var(--text-muted);"><span class="lang-vi">Kết quả ôn tập của bạn:</span><span class="lang-en">Your Practice Score:</span></div>
           <div style="font-size: 1.4rem; font-weight: 800; color: var(--primary);">
             ${correctCount} / ${quizData.length} câu đúng (${Math.round((correctCount / quizData.length) * 100)}%)
           </div>
         </div>
         <div style="font-size: 0.85rem; color: var(--text-muted);">
-          Đã làm ${answeredCount} / ${quizData.length} câu
+          <span class="lang-vi">Đã làm</span><span class="lang-en">Completed</span> ${answeredCount} / ${quizData.length} <span class="lang-vi">câu</span><span class="lang-en">questions</span>
         </div>
       </div>
     `;

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="vi" data-theme="light">
+<html lang="vi" data-lang="vi" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,17 +20,22 @@
     <aside class="sidebar" id="sidebar">
       <div class="sidebar-header">
         <div class="sidebar-brand">
-          <div class="brand-logo">SAP</div>
-          <div class="brand-text">
-            <h1>IS091IU MASTER GUIDE</h1>
-            <p>HCMIU • VNU-HCM</p>
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <div class="brand-logo">SAP</div>
+            <div class="brand-text">
+              <h1>IS091IU MASTER GUIDE</h1>
+              <p>HCMIU • VNU-HCM</p>
+            </div>
           </div>
+          <button class="sidebar-collapse-btn" id="sidebar-close-btn" title="Thu gọn thanh bên (Ctrl+B)">
+            <i class="fas fa-chevron-left"></i>
+          </button>
         </div>
       </div>
 
       <!-- Student ID Replacer Box -->
       <div class="student-id-box">
-        <label><i class="fas fa-id-badge"></i> Số Định Danh Học Viên (###):</label>
+        <label><i class="fas fa-id-badge"></i> <span class="lang-vi">Số Định Danh Học Viên (###):</span><span class="lang-en">Student ID Number (###):</span></label>
         <div class="student-id-input-group">
           <input type="text" id="student-id-input" value="180" maxlength="4" placeholder="180">
           <div class="student-id-hint">
@@ -49,13 +54,13 @@
 
       <!-- Navigation Menu -->
       <nav class="sidebar-nav">
-        <div class="nav-section-title">Tổng Quan & Kiến Trúc</div>
+        <div class="nav-section-title"><span class="lang-vi">Tổng Quan & Kiến Trúc</span><span class="lang-en">Overview & Architecture</span></div>
         <a href="#chapter-intro" class="nav-item">
           <span class="nav-icon"><i class="fas fa-book-open"></i></span>
-          <span>Mở Đầu & Global Bike Inc.</span>
+          <span><span class="lang-vi">Mở Đầu & Global Bike Inc.</span><span class="lang-en">Intro & Global Bike Inc.</span></span>
         </a>
 
-        <div class="nav-section-title">Phân Hệ Nghiệp Vụ Chính</div>
+        <div class="nav-section-title"><span class="lang-vi">Phân Hệ Nghiệp Vụ Chính</span><span class="lang-en">Core Business Modules</span></div>
         <a href="#chapter-sd" class="nav-item">
           <span class="nav-icon"><i class="fas fa-truck-fast"></i></span>
           <span>1. Sales & Distribution (SD)</span>
@@ -72,24 +77,24 @@
           <span class="nav-badge">12 Steps</span>
         </a>
 
-        <div class="nav-section-title">Công Cụ Tương Tác & Kế Toán</div>
+        <div class="nav-section-title"><span class="lang-vi">Công Cụ Tương Tác & Kế Toán</span><span class="lang-en">Interactive Tools & Accounting</span></div>
         <a href="#section-t-accounts" class="nav-item">
           <span class="nav-icon"><i class="fas fa-scale-balanced"></i></span>
-          <span>Sơ Đồ Chữ T (T-Accounts)</span>
+          <span><span class="lang-vi">Sơ Đồ Chữ T (T-Accounts)</span><span class="lang-en">T-Accounts Visualizer</span></span>
         </a>
         <a href="#section-app-finder" class="nav-item">
           <span class="nav-icon"><i class="fas fa-th-large"></i></span>
-          <span>Tra Cứu App Fiori & T-Codes</span>
+          <span><span class="lang-vi">Tra Cứu App Fiori & T-Codes</span><span class="lang-en">Fiori App Finder & T-Codes</span></span>
         </a>
 
-        <div class="nav-section-title">Ôn Thi & Báo Cáo Thu Hoạch</div>
+        <div class="nav-section-title"><span class="lang-vi">Ôn Thi & Báo Cáo Thu Hoạch</span><span class="lang-en">Exam Prep & Reports</span></div>
         <a href="#chapter-midterm" class="nav-item">
           <span class="nav-icon"><i class="fas fa-graduation-cap"></i></span>
-          <span>Lý Thuyết MIS & Ôn Thi Giữa Kỳ</span>
+          <span><span class="lang-vi">Lý Thuyết MIS & Ôn Thi Giữa Kỳ</span><span class="lang-en">MIS Theory & Midterm Prep</span></span>
         </a>
         <a href="#section-quiz" class="nav-item">
           <span class="nav-icon"><i class="fas fa-clipboard-check"></i></span>
-          <span>Trắc Nghiệm Ôn Tập (Quiz)</span>
+          <span><span class="lang-vi">Trắc Nghiệm Ôn Tập (Quiz)</span><span class="lang-en">Interactive Midterm Quiz</span></span>
           <span class="nav-badge">10 Qs</span>
         </a>
       </nav>
@@ -107,26 +112,35 @@
       </div>
     </aside>
 
+    <!-- Sidebar Overlay for mobile / drawer view -->
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
     <!-- Main Content Wrapper -->
     <main class="main-wrapper">
       <!-- Top Sticky Bar -->
       <header class="top-header">
         <div style="display: flex; align-items: center; gap: 15px;">
-          <button class="menu-toggle-btn" id="menu-toggle"><i class="fas fa-bars"></i></button>
+          <button class="menu-toggle-btn" id="menu-toggle" title="Ẩn / Hiện thanh điều hướng (Ctrl+B)"><i class="fas fa-bars"></i></button>
           <div class="header-breadcrumbs">
             <span>IS091IU</span>
             <i class="fas fa-chevron-right" style="font-size: 0.7rem;"></i>
             <span>SAP S/4HANA Fiori 3.0</span>
             <i class="fas fa-chevron-right" style="font-size: 0.7rem;"></i>
-            <span class="current">Sách Hướng Dẫn Chi Tiết Toàn Tập</span>
+            <span class="current"><span class="lang-vi">Sách Hướng Dẫn Chi Tiết Toàn Tập</span><span class="lang-en">Comprehensive Master Guidebook</span></span>
           </div>
         </div>
 
         <div class="header-actions">
-          <a href="#section-t-accounts" class="btn-header"><i class="fas fa-scale-balanced"></i> Bút toán chữ T</a>
-          <a href="#section-app-finder" class="btn-header"><i class="fas fa-search"></i> Tra cứu App</a>
-          <a href="#section-quiz" class="btn-header"><i class="fas fa-pen-to-square"></i> Làm bài trắc nghiệm</a>
-          <button onclick="window.print()" class="btn-header" style="background: var(--bg-card);"><i class="fas fa-print"></i> In / Xuất PDF</button>
+          <!-- Bilingual Language Switcher -->
+          <div class="lang-switcher" title="Chuyển đổi ngôn ngữ / Switch Language">
+            <button class="lang-btn active" data-lang="vi">🇻🇳 VN</button>
+            <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
+            <button class="lang-btn" data-lang="bi">🌐 Song Ngữ</button>
+          </div>
+          <a href="#section-t-accounts" class="btn-header"><i class="fas fa-scale-balanced"></i> <span class="lang-vi">Bút toán chữ T</span><span class="lang-en">T-Accounts</span></a>
+          <a href="#section-app-finder" class="btn-header"><i class="fas fa-search"></i> <span class="lang-vi">Tra cứu App</span><span class="lang-en">App Finder</span></a>
+          <a href="#section-quiz" class="btn-header"><i class="fas fa-pen-to-square"></i> <span class="lang-vi">Làm bài trắc nghiệm</span><span class="lang-en">Midterm Quiz</span></a>
+          <button onclick="window.print()" class="btn-header" style="background: var(--bg-card);"><i class="fas fa-print"></i> <span class="lang-vi">In / Xuất PDF</span><span class="lang-en">Print / PDF</span></button>
         </div>
       </header>
 
@@ -135,7 +149,7 @@
         <!-- Hero Banner -->
         <div class="book-hero">
           <span class="hero-tag">IS091IU • HCMIU • VNU-HCM</span>
-          <h1>CẨM NANG TOÀN TẬP SAP S/4HANA FIORI & MIS</h1>
+          <h1><span class="lang-vi">CẨM NANG TOÀN TẬP SAP S/4HANA FIORI & MIS</span><span class="lang-en">SAP S/4HANA FIORI & MIS MASTER HANDBOOK</span></h1>
           <p>
             Sách hướng dẫn tra cứu chi tiết từng bước cho các phân hệ <strong>Bán hàng (SD)</strong>, <strong>Quản lý Vật tư (MM)</strong> và <strong>Kế toán Tài chính (FI)</strong>. Tích hợp dữ liệu chuẩn hóa, bút toán kế toán T-Accounts, giải thích câu hỏi báo cáo thực hành Nhóm 7 và bộ câu hỏi ôn thi Midterm.
           </p>
@@ -311,7 +325,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Làm quen với giao diện SAP Fiori Launchpad và cấu trúc dữ liệu khách hàng Beantown Bikes (Số BP: 1000) tại Hoa Kỳ.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Làm quen với giao diện SAP Fiori Launchpad và cấu trúc dữ liệu khách hàng Beantown Bikes (Số BP: 1000) tại Hoa Kỳ.
         </div>
         
             <div class="step-alert info">
@@ -324,9 +338,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -367,7 +381,7 @@
             <span>Xác nhận địa chỉ Boston, MA và các điều khoản thanh toán (Payment Terms: 0001).</span>
           </div>
           <button class="checkpoint-btn" data-step-id="sd-ex-1">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -388,7 +402,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Tra cứu đơn đặt hàng số 1 của Beantown Bikes để phân tích cơ cấu giá bán, chi phí và lợi nhuận gộp.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Tra cứu đơn đặt hàng số 1 của Beantown Bikes để phân tích cơ cấu giá bán, chi phí và lợi nhuận gộp.
         </div>
         
             <div class="step-alert info">
@@ -401,9 +415,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -450,7 +464,7 @@
             <span>Ghi nhớ tổng giá trị $15,000.00 USD để đối chiếu với hóa đơn ở bài tập sau.</span>
           </div>
           <button class="checkpoint-btn" data-step-id="sd-ex-2">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -471,7 +485,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Kiểm tra trạng thái xuất hàng của đơn hàng số 1 tại nhà máy Miami (Plant MI00).
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Kiểm tra trạng thái xuất hàng của đơn hàng số 1 tại nhà máy Miami (Plant MI00).
         </div>
         
             <div class="step-alert info">
@@ -484,9 +498,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -527,7 +541,7 @@
             <span>Trạng thái Overall Goods Movement Status đã chuyển thành 'C' (Completely Processed).</span>
           </div>
           <button class="checkpoint-btn" data-step-id="sd-ex-3">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -548,7 +562,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Xem xét hóa đơn bán hàng chính thức (Customer Invoice) gửi cho khách hàng Beantown Bikes.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Xem xét hóa đơn bán hàng chính thức (Customer Invoice) gửi cho khách hàng Beantown Bikes.
         </div>
         
         
@@ -556,9 +570,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -612,7 +626,7 @@
             <span>Kiểm tra xem bút toán tài chính tương ứng đã được kích hoạt chưa.</span>
           </div>
           <button class="checkpoint-btn" data-step-id="sd-ex-4">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -633,7 +647,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Khảo sát tính năng kết nối thông tin thời gian thực trong SAP S/4HANA thông qua Luồng chứng từ (Document Flow).
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Khảo sát tính năng kết nối thông tin thời gian thực trong SAP S/4HANA thông qua Luồng chứng từ (Document Flow).
         </div>
         
             <div class="step-alert info">
@@ -646,9 +660,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -677,7 +691,7 @@
             <span>Nhấp thử vào nút 'Display Document' để chuyển thẳng sang xem bút toán Kế toán sổ cái.</span>
           </div>
           <button class="checkpoint-btn" data-step-id="sd-ex-5">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -708,7 +722,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Tạo hồ sơ đối tác kinh doanh mới cho khách hàng The Bike Zone và phân quyền trong cả Kế toán (FI Customer) và Bán hàng (Customer).
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Tạo hồ sơ đối tác kinh doanh mới cho khách hàng The Bike Zone và phân quyền trong cả Kế toán (FI Customer) và Bán hàng (Customer).
         </div>
         
             <div class="step-alert warning">
@@ -721,9 +735,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -770,7 +784,7 @@
             <span>Hệ thống sẽ cấp một số BP ngẫu nhiên (ví dụ: 1003219). Hãy ghi lại số này vào bảng báo cáo.</span>
           </div>
           <button class="checkpoint-btn" data-step-id="sd-cs-1">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -791,7 +805,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Ghi nhận yêu cầu hỏi giá từ đại lý The Bike Zone cho 5 chiếc xe Deluxe Touring Bike và 2 chiếc xe Professional Touring Bike.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Ghi nhận yêu cầu hỏi giá từ đại lý The Bike Zone cho 5 chiếc xe Deluxe Touring Bike và 2 chiếc xe Professional Touring Bike.
         </div>
         
             <div class="step-alert info">
@@ -804,9 +818,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -877,7 +891,7 @@
             <span>Sau khi nhấn Save, hệ thống cấp số Inquiry dạng 100000xx (ví dụ: 10000121).</span>
           </div>
           <button class="checkpoint-btn" data-step-id="sd-cs-2">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -898,7 +912,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Chuyển đổi Inquiry thành bản Báo giá chính thức (Quotation) và áp dụng mức chiết khấu thương mại 5% cho đại lý thân thiết.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Chuyển đổi Inquiry thành bản Báo giá chính thức (Quotation) và áp dụng mức chiết khấu thương mại 5% cho đại lý thân thiết.
         </div>
         
             <div class="step-alert warning">
@@ -911,9 +925,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -954,7 +968,7 @@
             <span>Hệ thống cấp số Báo giá (ví dụ: 20000059).</span>
           </div>
           <button class="checkpoint-btn" data-step-id="sd-cs-3">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -975,7 +989,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Khách hàng chấp thuận báo giá, nhân viên bán hàng tiến hành lập Đơn đặt hàng bán tiêu chuẩn (Standard Sales Order).
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Khách hàng chấp thuận báo giá, nhân viên bán hàng tiến hành lập Đơn đặt hàng bán tiêu chuẩn (Standard Sales Order).
         </div>
         
             <div class="step-alert info">
@@ -988,9 +1002,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -1031,7 +1045,7 @@
             <span>Hệ thống cấp số Đơn hàng (ví dụ: Sales Order 51).</span>
           </div>
           <button class="checkpoint-btn" data-step-id="sd-cs-4">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -1052,7 +1066,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Xác minh tại kho thành phẩm Miami (Plant MI00, Storage Location FG00) có đủ số lượng 5 xe Deluxe và 2 xe Pro hay không.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Xác minh tại kho thành phẩm Miami (Plant MI00, Storage Location FG00) có đủ số lượng 5 xe Deluxe và 2 xe Pro hay không.
         </div>
         
         
@@ -1060,9 +1074,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -1097,7 +1111,7 @@
             <span>Đảm bảo kho còn đủ hàng để thực hiện giao 5 xe Deluxe và 2 xe Pro.</span>
           </div>
           <button class="checkpoint-btn" data-step-id="sd-cs-5">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -1118,7 +1132,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Kiểm tra trạng thái hoàn tất xử lý của Đơn hàng trước khi bộ phận kho vận khởi tạo chuyến hàng.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Kiểm tra trạng thái hoàn tất xử lý của Đơn hàng trước khi bộ phận kho vận khởi tạo chuyến hàng.
         </div>
         
         
@@ -1126,9 +1140,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -1169,7 +1183,7 @@
             <span>Đơn hàng sẵn sàng để bộ phận kho tạo Outbound Delivery.</span>
           </div>
           <button class="checkpoint-btn" data-step-id="sd-cs-6">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -1190,7 +1204,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Tạo chứng từ xuất kho giao hàng dựa trên đơn đặt hàng bán của khách.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Tạo chứng từ xuất kho giao hàng dựa trên đơn đặt hàng bán của khách.
         </div>
         
             <div class="step-alert warning">
@@ -1203,9 +1217,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -1246,7 +1260,7 @@
             <span>Hệ thống cấp số giao hàng dạng 800000xx (ví dụ: 80000048).</span>
           </div>
           <button class="checkpoint-btn" data-step-id="sd-cs-7">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -1267,7 +1281,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Quan sát sự thay đổi trạng thái sau khi đã có lệnh giao hàng.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Quan sát sự thay đổi trạng thái sau khi đã có lệnh giao hàng.
         </div>
         
         
@@ -1275,9 +1289,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -1312,7 +1326,7 @@
             <span>Xác nhận khâu Order Processing đã chuyển giao sang Shipping.</span>
           </div>
           <button class="checkpoint-btn" data-step-id="sd-cs-8">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -1333,7 +1347,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Ghi nhận số lượng 7 xe đã được nhặt (Picked Qty) và bấm Post Goods Issue để xác nhận quyền sở hữu hàng hóa đã chuyển sang cho khách.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Ghi nhận số lượng 7 xe đã được nhặt (Picked Qty) và bấm Post Goods Issue để xác nhận quyền sở hữu hàng hóa đã chuyển sang cho khách.
         </div>
         
         
@@ -1341,9 +1355,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -1391,7 +1405,7 @@
             <span>Số chứng từ vật tư dạng 4900038xxx và chứng từ kế toán WL được tạo.</span>
           </div>
           <button class="checkpoint-btn" data-step-id="sd-cs-9">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -1412,7 +1426,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Đối chiếu số lượng tồn kho xem hệ thống đã trừ chính xác 7 xe đạp vừa xuất hay chưa.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Đối chiếu số lượng tồn kho xem hệ thống đã trừ chính xác 7 xe đạp vừa xuất hay chưa.
         </div>
         
         
@@ -1420,9 +1434,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -1451,7 +1465,7 @@
             <span>Xác nhận kho Miami đã ghi nhận giảm trừ thành công.</span>
           </div>
           <button class="checkpoint-btn" data-step-id="sd-cs-10">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -1472,7 +1486,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Phát hành hóa đơn tài chính chính thức đòi tiền đại lý The Bike Zone dựa trên số lượng hàng thực tế đã xuất giao.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Phát hành hóa đơn tài chính chính thức đòi tiền đại lý The Bike Zone dựa trên số lượng hàng thực tế đã xuất giao.
         </div>
         
             <div class="step-alert info">
@@ -1485,9 +1499,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -1534,7 +1548,7 @@
             <span>Số hóa đơn F2 dạng 900000xx (ví dụ: 90000054).</span>
           </div>
           <button class="checkpoint-btn" data-step-id="sd-cs-11">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -1555,7 +1569,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Kiểm tra trạng thái hạch toán của hóa đơn và phân tích bút toán tăng công nợ phải thu và ghi nhận doanh thu bán hàng.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Kiểm tra trạng thái hạch toán của hóa đơn và phân tích bút toán tăng công nợ phải thu và ghi nhận doanh thu bán hàng.
         </div>
         
         
@@ -1563,9 +1577,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -1607,7 +1621,7 @@
             <span>Số Journal Entry dạng 90000048 đã được ghi nhận trong Company Code US00.</span>
           </div>
           <button class="checkpoint-btn" data-step-id="sd-cs-12">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -1628,7 +1642,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Khách hàng chuyển khoản $20,092.50 USD thanh toán hóa đơn. Kế toán tiến hành ghi tăng tiền gửi ngân hàng và tất toán khoản phải thu.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Khách hàng chuyển khoản $20,092.50 USD thanh toán hóa đơn. Kế toán tiến hành ghi tăng tiền gửi ngân hàng và tất toán khoản phải thu.
         </div>
         
         
@@ -1636,9 +1650,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -1698,7 +1712,7 @@
             <span>Hệ thống cấp số chứng từ tiền vào dạng 14000000xx (ví dụ: 1400000045).</span>
           </div>
           <button class="checkpoint-btn" data-step-id="sd-cs-13">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -1719,7 +1733,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Khảo sát bức tranh toàn cảnh của thương vụ bán hàng từ lúc khách hỏi giá đến khi tiền về tài khoản và công nợ được tất toán.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Khảo sát bức tranh toàn cảnh của thương vụ bán hàng từ lúc khách hỏi giá đến khi tiền về tài khoản và công nợ được tất toán.
         </div>
         
         
@@ -1727,9 +1741,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -1800,7 +1814,7 @@
             <span>Đây là ảnh quan trọng nhất để nộp trong báo cáo môn học IS091IU!</span>
           </div>
           <button class="checkpoint-btn" data-step-id="sd-cs-14">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -1896,7 +1910,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Tra cứu đơn mua hàng số 4500000000 gửi cho nhà cung cấp Olympic Protective Gear (Số đối tác: 101999) tại Atlanta, Hoa Kỳ.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Tra cứu đơn mua hàng số 4500000000 gửi cho nhà cung cấp Olympic Protective Gear (Số đối tác: 101999) tại Atlanta, Hoa Kỳ.
         </div>
         
             <div class="step-alert info">
@@ -1909,9 +1923,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -1958,7 +1972,7 @@
             <span>Ghi nhớ tổng giá trị $5,250.00 USD để đối chiếu các bước sau.</span>
           </div>
           <button class="checkpoint-btn" data-step-id="mm-ex-1">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -1979,7 +1993,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Xem chứng từ vật tư ghi nhận việc kho đã nhận đủ 210 chiếc mũ bảo hiểm từ Olympic Protective Gear.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Xem chứng từ vật tư ghi nhận việc kho đã nhận đủ 210 chiếc mũ bảo hiểm từ Olympic Protective Gear.
         </div>
         
         
@@ -1987,9 +2001,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -2037,7 +2051,7 @@
             <span>Hiểu rõ vai trò của tài khoản trung gian GR/IR (9100000) khi hàng về nhưng chưa có hóa đơn.</span>
           </div>
           <button class="checkpoint-btn" data-step-id="mm-ex-2">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -2058,7 +2072,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Kiểm tra hóa đơn $5,250.00 USD nhận được từ nhà cung cấp và phân tích lý do hệ thống gắn cờ 'Blocked for Payment'.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Kiểm tra hóa đơn $5,250.00 USD nhận được từ nhà cung cấp và phân tích lý do hệ thống gắn cờ 'Blocked for Payment'.
         </div>
         
         
@@ -2066,9 +2080,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -2116,7 +2130,7 @@
             <span>Phân biệt giữa 'Posted' (đã ghi sổ nợ) và 'Paid' (đã chuyển tiền trả).</span>
           </div>
           <button class="checkpoint-btn" data-step-id="mm-ex-3">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -2137,7 +2151,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Tra cứu chứng từ chuyển tiền thanh toán từ ngân hàng cho Olympic Protective Gear.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Tra cứu chứng từ chuyển tiền thanh toán từ ngân hàng cho Olympic Protective Gear.
         </div>
         
         
@@ -2145,9 +2159,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -2195,7 +2209,7 @@
             <span>Xác nhận nghiệp vụ kế toán kép (Double-entry bookkeeping) có tổng Nợ bằng tổng Có.</span>
           </div>
           <button class="checkpoint-btn" data-step-id="mm-ex-4">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -2216,7 +2230,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Kiểm tra trạng thái bù trừ công nợ (Clearing Status) của đối tác Olympic Protective Gear.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Kiểm tra trạng thái bù trừ công nợ (Clearing Status) của đối tác Olympic Protective Gear.
         </div>
         
             <div class="step-alert info">
@@ -2229,9 +2243,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -2272,7 +2286,7 @@
             <span>Bạn đã nắm vững toàn bộ 5 bước của quy trình P2P chuẩn.</span>
           </div>
           <button class="checkpoint-btn" data-step-id="mm-ex-5">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -2303,7 +2317,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Tạo hồ sơ đối tác kinh doanh nhà cung cấp Mid-West Supply với 2 vai trò FLVN00 (Kế toán công nợ) và FLVN01 (Mua sắm hàng hóa).
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Tạo hồ sơ đối tác kinh doanh nhà cung cấp Mid-West Supply với 2 vai trò FLVN00 (Kế toán công nợ) và FLVN01 (Mua sắm hàng hóa).
         </div>
         
             <div class="step-alert warning">
@@ -2316,9 +2330,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -2365,7 +2379,7 @@
             <span>Hệ thống cấp số đối tác (ví dụ: 1003339).</span>
           </div>
           <button class="checkpoint-btn" data-step-id="mm-cs-1">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -2386,7 +2400,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Tạo bản ghi dữ liệu tổng thể (Master Data) cho sản phẩm Khóa xích xe đạp (Chain Lock) thuộc nhóm Hàng hóa thương mại (HAWA).
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Tạo bản ghi dữ liệu tổng thể (Master Data) cho sản phẩm Khóa xích xe đạp (Chain Lock) thuộc nhóm Hàng hóa thương mại (HAWA).
         </div>
         
             <div class="step-alert info">
@@ -2399,9 +2413,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -2460,7 +2474,7 @@
             <span>Hệ thống báo: Material CHLK1<span class='student-num-val'>###</span> has been created.</span>
           </div>
           <button class="checkpoint-btn" data-step-id="mm-cs-2">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -2481,7 +2495,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Thiết lập các thông số tồn trữ cho nhà máy Dallas (DL00), kho hàng thương mại TG00 và áp mức giá mua tiêu chuẩn $32.00 USD.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Thiết lập các thông số tồn trữ cho nhà máy Dallas (DL00), kho hàng thương mại TG00 và áp mức giá mua tiêu chuẩn $32.00 USD.
         </div>
         
         
@@ -2489,9 +2503,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -2544,7 +2558,7 @@
             <span>Kiểm tra xem Valuation Class 3100 đã được lưu chưa.</span>
           </div>
           <button class="checkpoint-btn" data-step-id="mm-cs-3">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -2565,7 +2579,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Xác minh rằng vật tư mới tạo hoàn toàn chưa có tồn kho trong hệ thống (Số lượng = 0 EA).
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Xác minh rằng vật tư mới tạo hoàn toàn chưa có tồn kho trong hệ thống (Số lượng = 0 EA).
         </div>
         
             <div class="step-alert info">
@@ -2578,9 +2592,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -2615,7 +2629,7 @@
             <span>Sẵn sàng khởi động quy trình mua sắm bổ sung.</span>
           </div>
           <button class="checkpoint-btn" data-step-id="mm-cs-4">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -2636,7 +2650,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Bộ phận kho Dallas nhận thấy thiếu hàng khóa xích nên lập phiếu đề xuất mua sắm nội bộ gửi sang phòng Mua hàng.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Bộ phận kho Dallas nhận thấy thiếu hàng khóa xích nên lập phiếu đề xuất mua sắm nội bộ gửi sang phòng Mua hàng.
         </div>
         
             <div class="step-alert info">
@@ -2649,9 +2663,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -2698,7 +2712,7 @@
             <span>Hệ thống cấp số PR dạng 0010000xxx (ví dụ: 0010000115).</span>
           </div>
           <button class="checkpoint-btn" data-step-id="mm-cs-5">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -2719,7 +2733,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Quan sát sự xuất hiện của dòng nhu cầu PurRqs (Purchase Requisition) trong bảng cân đối cung cầu vật tư.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Quan sát sự xuất hiện của dòng nhu cầu PurRqs (Purchase Requisition) trong bảng cân đối cung cầu vật tư.
         </div>
         
         
@@ -2727,9 +2741,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -2758,7 +2772,7 @@
             <span>Tiến hành chuyển giao cho phòng mua sắm phát hành chào giá.</span>
           </div>
           <button class="checkpoint-btn" data-step-id="mm-cs-6">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -2779,7 +2793,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Gửi thư mời chào giá đến 3 nhà cung cấp tiềm năng để chuẩn bị đấu thầu cạnh tranh.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Gửi thư mời chào giá đến 3 nhà cung cấp tiềm năng để chuẩn bị đấu thầu cạnh tranh.
         </div>
         
             <div class="step-alert info">
@@ -2792,9 +2806,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -2847,7 +2861,7 @@
             <span>Hệ thống cấp mã RFQ dạng 7000000xxx (ví dụ: 7000000147).</span>
           </div>
           <button class="checkpoint-btn" data-step-id="mm-cs-7">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -2868,7 +2882,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Nhập mức giá chào thầu nhận được từ 3 nhà cung cấp vào hệ thống để tiến hành phân tích.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Nhập mức giá chào thầu nhận được từ 3 nhà cung cấp vào hệ thống để tiến hành phân tích.
         </div>
         
         
@@ -2876,9 +2890,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -2913,7 +2927,7 @@
             <span>Xác nhận đã nhập đầy đủ đơn giá cho cả 3 đối tác.</span>
           </div>
           <button class="checkpoint-btn" data-step-id="mm-cs-8">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -2934,7 +2948,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> So sánh trực quan các bảng giá, phê duyệt trúng thầu cho Mid-West Supply và từ chối 2 đối thủ còn lại.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> So sánh trực quan các bảng giá, phê duyệt trúng thầu cho Mid-West Supply và từ chối 2 đối thủ còn lại.
         </div>
         
             <div class="step-alert info">
@@ -2947,9 +2961,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -2984,7 +2998,7 @@
             <span>Quotation của Mid-West Supply chuyển sang trạng thái sẵn sàng chuyển đổi thành PO.</span>
           </div>
           <button class="checkpoint-btn" data-step-id="mm-cs-9">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -3005,7 +3019,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Chính thức phát hành Đơn mua hàng (Standard PO) gửi cho Mid-West Supply dựa trên báo giá đã trúng thầu, chia làm 2 đợt giao hàng.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Chính thức phát hành Đơn mua hàng (Standard PO) gửi cho Mid-West Supply dựa trên báo giá đã trúng thầu, chia làm 2 đợt giao hàng.
         </div>
         
             <div class="step-alert warning">
@@ -3018,9 +3032,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -3061,7 +3075,7 @@
             <span>Hệ thống cấp số PO dạng 45000000xx (ví dụ: 4500000088).</span>
           </div>
           <button class="checkpoint-btn" data-step-id="mm-cs-10">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -3082,7 +3096,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Xác nhận lại chi tiết PO trước khi hàng được xe tải của Mid-West Supply chở đến cổng nhà máy Dallas.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Xác nhận lại chi tiết PO trước khi hàng được xe tải của Mid-West Supply chở đến cổng nhà máy Dallas.
         </div>
         
         
@@ -3090,9 +3104,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -3121,7 +3135,7 @@
             <span>Chuyển sang bộ phận Tiếp nhận hàng hóa (Goods Receipt).</span>
           </div>
           <button class="checkpoint-btn" data-step-id="mm-cs-11">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -3142,7 +3156,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Xe tải giao 100 chiếc khóa xích đợt đầu tiên. Do là nhà cung cấp mới, nhân viên nhận hàng chuyển lô hàng vào kho Kiểm định chất lượng (Quality Inspection).
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Xe tải giao 100 chiếc khóa xích đợt đầu tiên. Do là nhà cung cấp mới, nhân viên nhận hàng chuyển lô hàng vào kho Kiểm định chất lượng (Quality Inspection).
         </div>
         
         
@@ -3150,9 +3164,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -3212,7 +3226,7 @@
             <span>Số chứng từ vật tư dạng 50000001xx (ví dụ: 5000000168).</span>
           </div>
           <button class="checkpoint-btn" data-step-id="mm-cs-12">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -3233,7 +3247,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Sau khi kiểm tra 100 khóa xích đạt tiêu chuẩn chất lượng, thực hiện lệnh chuyển kho (Transfer Posting) từ Quality Inspection sang Unrestricted-Use.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Sau khi kiểm tra 100 khóa xích đạt tiêu chuẩn chất lượng, thực hiện lệnh chuyển kho (Transfer Posting) từ Quality Inspection sang Unrestricted-Use.
         </div>
         
         
@@ -3241,9 +3255,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -3284,7 +3298,7 @@
             <span>Số chứng từ vật tư nội bộ dạng 4900038xxx (ví dụ: 4900038533).</span>
           </div>
           <button class="checkpoint-btn" data-step-id="mm-cs-13">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -3305,7 +3319,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Xác nhận 100 chiếc khóa xích đã nằm hoàn toàn trong mục Unrestricted-Use tại kho Dallas TG00.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Xác nhận 100 chiếc khóa xích đã nằm hoàn toàn trong mục Unrestricted-Use tại kho Dallas TG00.
         </div>
         
         
@@ -3313,9 +3327,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -3344,7 +3358,7 @@
             <span>Xác nhận chuyển kho thành công.</span>
           </div>
           <button class="checkpoint-btn" data-step-id="mm-cs-14">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -3365,7 +3379,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Nhận hóa đơn trị giá $3,200.00 USD từ Mid-West Supply cho 100 chiếc đợt đầu. Thực hiện đối chiếu 3 bên (3-Way Match) và ghi nhận nợ phải trả.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Nhận hóa đơn trị giá $3,200.00 USD từ Mid-West Supply cho 100 chiếc đợt đầu. Thực hiện đối chiếu 3 bên (3-Way Match) và ghi nhận nợ phải trả.
         </div>
         
         
@@ -3373,9 +3387,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -3429,7 +3443,7 @@
             <span>Số hóa đơn nhà cung cấp dạng 5105600xxx (ví dụ: 5105600287).</span>
           </div>
           <button class="checkpoint-btn" data-step-id="mm-cs-15">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -3450,7 +3464,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Vào tab Purchase Order History để thấy 1 dòng Nhập kho (Goods Receipt 100 EA) và 1 dòng Hóa đơn (Invoice Receipt $3,200 USD) liên kết trực tiếp với PO.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Vào tab Purchase Order History để thấy 1 dòng Nhập kho (Goods Receipt 100 EA) và 1 dòng Hóa đơn (Invoice Receipt $3,200 USD) liên kết trực tiếp với PO.
         </div>
         
         
@@ -3458,9 +3472,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -3489,7 +3503,7 @@
             <span>Số lượng nhập và số lượng hóa đơn khớp nhau hoàn toàn.</span>
           </div>
           <button class="checkpoint-btn" data-step-id="mm-cs-16">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -3510,7 +3524,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Kiểm tra liên kết các chứng từ mua hàng trong hệ thống.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Kiểm tra liên kết các chứng từ mua hàng trong hệ thống.
         </div>
         
         
@@ -3518,9 +3532,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -3543,7 +3557,7 @@
             <span>Chuẩn bị tiếp nhận đợt giao hàng thứ 2.</span>
           </div>
           <button class="checkpoint-btn" data-step-id="mm-cs-17">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -3564,7 +3578,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Xe tải giao nốt 100 chiếc khóa xích còn lại. Vì nhà cung cấp đã được tín nhiệm qua đợt 1, nhân viên nhập kho ghi nhận trực tiếp vào Unrestricted-Use stock.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Xe tải giao nốt 100 chiếc khóa xích còn lại. Vì nhà cung cấp đã được tín nhiệm qua đợt 1, nhân viên nhập kho ghi nhận trực tiếp vào Unrestricted-Use stock.
         </div>
         
         
@@ -3572,9 +3586,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -3622,7 +3636,7 @@
             <span>Số chứng từ vật tư dạng 50000001xx (ví dụ: 5000000169).</span>
           </div>
           <button class="checkpoint-btn" data-step-id="mm-cs-18">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -3643,7 +3657,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Xác nhận rằng kho Dallas TG00 hiện tại đã sở hữu đủ 200 chiếc khóa xích CHLK1###.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Xác nhận rằng kho Dallas TG00 hiện tại đã sở hữu đủ 200 chiếc khóa xích CHLK1###.
         </div>
         
         
@@ -3651,9 +3665,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -3682,7 +3696,7 @@
             <span>Kho Dallas đã nhận đủ 100% hàng của đơn mua.</span>
           </div>
           <button class="checkpoint-btn" data-step-id="mm-cs-19">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -3703,7 +3717,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Nhận hóa đơn cho 100 chiếc đợt 2 trị giá $3,200.00 USD. Tiến hành hạch toán vào sổ cái.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Nhận hóa đơn cho 100 chiếc đợt 2 trị giá $3,200.00 USD. Tiến hành hạch toán vào sổ cái.
         </div>
         
         
@@ -3711,9 +3725,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -3755,7 +3769,7 @@
             <span>Số hóa đơn dạng 5105600xxx (ví dụ: 5105600288).</span>
           </div>
           <button class="checkpoint-btn" data-step-id="mm-cs-20">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -3776,7 +3790,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Kế toán xuất tiền từ tài khoản Ngân hàng Bank 1 để thanh toán tất toán cả 2 hóa đơn cho nhà cung cấp Mid-West Supply.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Kế toán xuất tiền từ tài khoản Ngân hàng Bank 1 để thanh toán tất toán cả 2 hóa đơn cho nhà cung cấp Mid-West Supply.
         </div>
         
         
@@ -3784,9 +3798,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -3834,7 +3848,7 @@
             <span>Số chứng từ chi tiền KZ dạng 15000000xx (ví dụ: 1500000070).</span>
           </div>
           <button class="checkpoint-btn" data-step-id="mm-cs-21">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -3855,7 +3869,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Xác nhận rằng công nợ của Mid-West Supply đã về mức 0.00 USD (Cleared Items).
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Xác nhận rằng công nợ của Mid-West Supply đã về mức 0.00 USD (Cleared Items).
         </div>
         
         
@@ -3863,9 +3877,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -3900,7 +3914,7 @@
             <span>Xác nhận không còn nợ tồn đọng.</span>
           </div>
           <button class="checkpoint-btn" data-step-id="mm-cs-22">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -3921,7 +3935,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Kiểm tra PO History: Có 2 dòng Goods Receipt (tổng 200 EA) và 2 dòng Invoice Receipt (tổng $6,400 USD). Đơn mua hàng đã hoàn thành 100%.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Kiểm tra PO History: Có 2 dòng Goods Receipt (tổng 200 EA) và 2 dòng Invoice Receipt (tổng $6,400 USD). Đơn mua hàng đã hoàn thành 100%.
         </div>
         
         
@@ -3929,9 +3943,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -3960,7 +3974,7 @@
             <span>Không còn nghĩa vụ dở dang.</span>
           </div>
           <button class="checkpoint-btn" data-step-id="mm-cs-23">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -3981,7 +3995,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Đối chiếu số dư của 4 tài khoản sổ cái bị tác động trong toàn bộ 23 bước mua sắm vừa qua.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Đối chiếu số dư của 4 tài khoản sổ cái bị tác động trong toàn bộ 23 bước mua sắm vừa qua.
         </div>
         
             <div class="step-alert info">
@@ -3994,9 +4008,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -4037,7 +4051,7 @@
             <span>Hoàn thành toàn bộ Case Study MM.</span>
           </div>
           <button class="checkpoint-btn" data-step-id="mm-cs-24">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -4110,7 +4124,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Tìm hiểu cơ cấu bảng hệ thống tài khoản GL00 của Global Bike và cách thiết lập tài khoản tiền gửi ngân hàng.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Tìm hiểu cơ cấu bảng hệ thống tài khoản GL00 của Global Bike và cách thiết lập tài khoản tiền gửi ngân hàng.
         </div>
         
         
@@ -4118,9 +4132,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -4167,7 +4181,7 @@
             <span>Quan sát cờ 'Only balances in local currency'.</span>
           </div>
           <button class="checkpoint-btn" data-step-id="fi-ex-1">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -4188,7 +4202,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Chạy báo cáo Bảng cân đối kế toán (Balance Sheet) và Báo cáo kết quả hoạt động kinh doanh (Profit & Loss) theo cấu trúc chuẩn GWUS.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Chạy báo cáo Bảng cân đối kế toán (Balance Sheet) và Báo cáo kết quả hoạt động kinh doanh (Profit & Loss) theo cấu trúc chuẩn GWUS.
         </div>
         
         
@@ -4196,9 +4210,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -4233,7 +4247,7 @@
             <span>Xem mục Cash and Cash Equivalents và Accounts Payable.</span>
           </div>
           <button class="checkpoint-btn" data-step-id="fi-ex-2">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -4254,7 +4268,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Khảo sát cơ chế kết nối giữa tài khoản sổ cái 3300000 (Trade Payables) và các nhà cung cấp riêng lẻ.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Khảo sát cơ chế kết nối giữa tài khoản sổ cái 3300000 (Trade Payables) và các nhà cung cấp riêng lẻ.
         </div>
         
         
@@ -4262,9 +4276,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -4299,7 +4313,7 @@
             <span>Nắm vững lý do không được hạch toán tay vào tài khoản Reconciliation.</span>
           </div>
           <button class="checkpoint-btn" data-step-id="fi-ex-3">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -4330,7 +4344,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Thiết lập tài khoản sổ cái số 18100## đại diện cho tài khoản thanh toán tại ngân hàng phụ của Global Bike.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Thiết lập tài khoản sổ cái số 18100## đại diện cho tài khoản thanh toán tại ngân hàng phụ của Global Bike.
         </div>
         
         
@@ -4338,9 +4352,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -4405,7 +4419,7 @@
             <span>Hệ thống báo: G/L Account 18100## has been created.</span>
           </div>
           <button class="checkpoint-btn" data-step-id="fi-cs-1">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -4426,7 +4440,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Tạo tài khoản sổ cái 3300### đóng vai trò là tài khoản kiểm soát công nợ phải trả cho chủ cho thuê nhà.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Tạo tài khoản sổ cái 3300### đóng vai trò là tài khoản kiểm soát công nợ phải trả cho chủ cho thuê nhà.
         </div>
         
         
@@ -4434,9 +4448,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -4489,7 +4503,7 @@
             <span>Kiểm tra xem mục Recon Account for Vendors đã được chọn chưa.</span>
           </div>
           <button class="checkpoint-btn" data-step-id="fi-cs-2">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -4510,7 +4524,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Tạo tài khoản chi phí 7403### để ghi nhận chi phí thuê mặt bằng hàng tháng phản ánh lên Báo cáo kết quả hoạt động kinh doanh (P&L).
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Tạo tài khoản chi phí 7403### để ghi nhận chi phí thuê mặt bằng hàng tháng phản ánh lên Báo cáo kết quả hoạt động kinh doanh (P&L).
         </div>
         
         
@@ -4518,9 +4532,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -4573,7 +4587,7 @@
             <span>Xác nhận đã kích hoạt Primary Cost Element.</span>
           </div>
           <button class="checkpoint-btn" data-step-id="fi-cs-3">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -4594,7 +4608,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Tạo đối tác Landlord ### trên sổ phụ và gán tài khoản đối ứng vừa tạo ở Bước 2 để theo dõi công nợ riêng rẽ.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Tạo đối tác Landlord ### trên sổ phụ và gán tài khoản đối ứng vừa tạo ở Bước 2 để theo dõi công nợ riêng rẽ.
         </div>
         
         
@@ -4602,9 +4616,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -4657,7 +4671,7 @@
             <span>Hệ thống cấp số BP cho chủ nhà.</span>
           </div>
           <button class="checkpoint-btn" data-step-id="fi-cs-4">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -4678,7 +4692,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Chuyển một khoản ngân sách $100,000.00 USD từ tài khoản ngân hàng chính (Bank 1 - 1810000) sang tài khoản ngân hàng mới (18100##).
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Chuyển một khoản ngân sách $100,000.00 USD từ tài khoản ngân hàng chính (Bank 1 - 1810000) sang tài khoản ngân hàng mới (18100##).
         </div>
         
         
@@ -4686,9 +4700,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -4736,7 +4750,7 @@
             <span>Chứng từ kế toán chuyển khoản được tạo.</span>
           </div>
           <button class="checkpoint-btn" data-step-id="fi-cs-5">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -4757,7 +4771,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Xác nhận tài khoản ngân hàng phụ đã có số dư khả dụng $100,000.00 USD sẵn sàng chi trả.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Xác nhận tài khoản ngân hàng phụ đã có số dư khả dụng $100,000.00 USD sẵn sàng chi trả.
         </div>
         
         
@@ -4765,9 +4779,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -4796,7 +4810,7 @@
             <span>Sẵn sàng nhận hóa đơn tiền thuê.</span>
           </div>
           <button class="checkpoint-btn" data-step-id="fi-cs-6">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -4817,7 +4831,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Ghi nhận hóa đơn đòi tiền thuê tháng đầu tiên trị giá $1,500.00 USD từ Landlord và phân bổ vào Trung tâm chi phí quản lý Bắc Mỹ NAAD1000.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Ghi nhận hóa đơn đòi tiền thuê tháng đầu tiên trị giá $1,500.00 USD từ Landlord và phân bổ vào Trung tâm chi phí quản lý Bắc Mỹ NAAD1000.
         </div>
         
         
@@ -4825,9 +4839,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -4881,7 +4895,7 @@
             <span>Hóa đơn KR được hạch toán thành công.</span>
           </div>
           <button class="checkpoint-btn" data-step-id="fi-cs-7">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -4902,7 +4916,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Kiểm tra xem tài khoản 7403### đã ghi nhận phát sinh Nợ $1,500.00 USD hay chưa.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Kiểm tra xem tài khoản 7403### đã ghi nhận phát sinh Nợ $1,500.00 USD hay chưa.
         </div>
         
         
@@ -4910,9 +4924,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -4935,7 +4949,7 @@
             <span>Chuyển sang theo dõi công nợ sổ phụ.</span>
           </div>
           <button class="checkpoint-btn" data-step-id="fi-cs-8">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -4956,7 +4970,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Quan sát khoản nợ $1,500.00 USD của Landlord đang ở trạng thái Open (Chấm ĐỎ).
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Quan sát khoản nợ $1,500.00 USD của Landlord đang ở trạng thái Open (Chấm ĐỎ).
         </div>
         
         
@@ -4964,9 +4978,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -4995,7 +5009,7 @@
             <span>Sẵn sàng thực hiện chi tiền thanh toán.</span>
           </div>
           <button class="checkpoint-btn" data-step-id="fi-cs-9">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -5016,7 +5030,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Xuất $1,500.00 USD từ tài khoản ngân hàng phụ 18100## để thanh toán cho Landlord và tất toán khoản nợ.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Xuất $1,500.00 USD từ tài khoản ngân hàng phụ 18100## để thanh toán cho Landlord và tất toán khoản nợ.
         </div>
         
         
@@ -5024,9 +5038,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -5080,7 +5094,7 @@
             <span>Chứng từ chi tiền KZ được tạo.</span>
           </div>
           <button class="checkpoint-btn" data-step-id="fi-cs-10">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -5101,7 +5115,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Xác nhận rằng dòng công nợ của Landlord đã đổi màu từ ĐỎ sang XANH (Cleared Items) và số dư bằng 0.00 USD.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Xác nhận rằng dòng công nợ của Landlord đã đổi màu từ ĐỎ sang XANH (Cleared Items) và số dư bằng 0.00 USD.
         </div>
         
         
@@ -5109,9 +5123,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -5146,7 +5160,7 @@
             <span>Xác nhận đối tác Landlord đã sạch công nợ.</span>
           </div>
           <button class="checkpoint-btn" data-step-id="fi-cs-11">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -5167,7 +5181,7 @@
       </div>
       <div class="step-card-body">
         <div class="step-objective">
-          <strong>Mục tiêu:</strong> Quan sát toàn diện những tác động của các nghiệp vụ vừa thực hiện lên Bảng cân đối kế toán và Báo cáo kết quả hoạt động kinh doanh của Global Bike US.
+          <strong><span class="lang-vi">Mục tiêu:</span><span class="lang-en">Objective:</span></strong> Quan sát toàn diện những tác động của các nghiệp vụ vừa thực hiện lên Bảng cân đối kế toán và Báo cáo kết quả hoạt động kinh doanh của Global Bike US.
         </div>
         
         
@@ -5175,9 +5189,9 @@
           <table class="step-table">
             <thead>
               <tr>
-                <th style="width: 28%;">Trường thông tin (Field)</th>
-                <th style="width: 32%;">Giá trị cần nhập (Value)</th>
-                <th style="width: 40%;">Ý nghĩa / Hướng dẫn thao tác</th>
+                <th style="width: 28%;"><span class="lang-vi">Trường thông tin</span><span class="lang-en">Field Name</span></th>
+                <th style="width: 32%;"><span class="lang-vi">Giá trị cần nhập</span><span class="lang-en">Value to Enter</span></th>
+                <th style="width: 40%;"><span class="lang-vi">Ý nghĩa / Hướng dẫn</span><span class="lang-en">Explanation / Action</span></th>
               </tr>
             </thead>
             <tbody>
@@ -5218,7 +5232,7 @@
             <span>Hoàn tất trọn vẹn 12 bước của Case Study Kế toán Tài chính FI.</span>
           </div>
           <button class="checkpoint-btn" data-step-id="fi-cs-12">
-            <i class="far fa-circle"></i> Đánh dấu hoàn thành
+            <i class="far fa-circle"></i> <span class="lang-vi">Đánh dấu hoàn thành</span><span class="lang-en">Mark as Done</span>
           </button>
         </div>
         
@@ -5238,9 +5252,9 @@
           </div>
 
           <div style="display: flex; gap: 10px; margin-bottom: 20px;">
-            <button class="finder-filter-btn t-account-tab active" data-cycle="mm">Chu Trình Mua Hàng MM (P2P)</button>
-            <button class="finder-filter-btn t-account-tab" data-cycle="sd">Chu Trình Bán Hàng SD (OTC)</button>
-            <button class="finder-filter-btn t-account-tab" data-cycle="fi">Chu Trình Thuê Văn Phòng FI (Rent)</button>
+            <button class="finder-filter-btn t-account-tab active" data-cycle="mm"><span class="lang-vi">Chu Trình Mua Hàng MM (P2P)</span><span class="lang-en">MM Procurement Cycle (P2P)</span></button>
+            <button class="finder-filter-btn t-account-tab" data-cycle="sd"><span class="lang-vi">Chu Trình Bán Hàng SD (OTC)</span><span class="lang-en">SD Sales Cycle (OTC)</span></button>
+            <button class="finder-filter-btn t-account-tab" data-cycle="fi"><span class="lang-vi">Chu Trình Thuê Văn Phòng FI (Rent)</span><span class="lang-en">FI Rent Expense Cycle</span></button>
           </div>
 
           <div id="t-accounts-display">
@@ -5258,10 +5272,10 @@
 
           <div class="finder-controls">
             <input type="text" id="finder-search-input" class="finder-search" placeholder="Nhập tên ứng dụng, mã T-code (vd: MIGO, VA01, F-53, BP) hoặc vai trò...">
-            <button class="finder-filter-btn active" data-module="ALL">Tất cả</button>
-            <button class="finder-filter-btn" data-module="SD">Phân hệ SD</button>
-            <button class="finder-filter-btn" data-module="MM">Phân hệ MM</button>
-            <button class="finder-filter-btn" data-module="FI">Phân hệ FI</button>
+            <button class="finder-filter-btn active" data-module="ALL"><span class="lang-vi">Tất cả</span><span class="lang-en">All</span></button>
+            <button class="finder-filter-btn" data-module="SD"><span class="lang-vi">Phân hệ SD</span><span class="lang-en">SD Module</span></button>
+            <button class="finder-filter-btn" data-module="MM"><span class="lang-vi">Phân hệ MM</span><span class="lang-en">MM Module</span></button>
+            <button class="finder-filter-btn" data-module="FI"><span class="lang-vi">Phân hệ FI</span><span class="lang-en">FI Module</span></button>
           </div>
 
           <div class="app-grid" id="app-grid-container">
