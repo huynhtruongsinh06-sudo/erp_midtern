@@ -1274,6 +1274,318 @@ html[data-lang="bi"] p.lang-en {
   }
 }
 
+
+/* ==========================================================================
+   USER ONBOARDING, QUICK NAV & WALKTHROUGH MODAL
+   ========================================================================== */
+
+/* User Notice Callout Banner */
+.user-notice-box {
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  border: 1px solid #bfdbfe;
+  border-left: 5px solid #2563eb;
+  border-radius: var(--radius-md);
+  padding: 18px 24px;
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+}
+
+[data-theme="dark"] .user-notice-box {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  border-color: #3b82f6;
+  border-left-color: #60a5fa;
+}
+
+.user-notice-box .notice-icon {
+  font-size: 2.2rem;
+  line-height: 1;
+}
+
+.user-notice-box .notice-content {
+  flex: 1;
+}
+
+.user-notice-box .notice-content strong {
+  display: block;
+  font-size: 1.05rem;
+  color: #1e3a8a;
+  margin-bottom: 4px;
+}
+
+[data-theme="dark"] .user-notice-box .notice-content strong {
+  color: #93c5fd;
+}
+
+.user-notice-box .notice-content p {
+  font-size: 0.88rem;
+  color: #334155;
+  line-height: 1.5;
+  margin: 0;
+}
+
+[data-theme="dark"] .user-notice-box .notice-content p {
+  color: #cbd5e1;
+}
+
+.notice-btn {
+  background: #2563eb;
+  color: #ffffff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  box-shadow: 0 2px 4px rgba(37, 99, 235, 0.25);
+  transition: all 0.2s ease;
+}
+
+.notice-btn:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(37, 99, 235, 0.35);
+}
+
+@media (max-width: 768px) {
+  .user-notice-box {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Quick Navigation Hub */
+.quick-nav-hub {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  margin-bottom: 30px;
+  box-shadow: var(--shadow-sm);
+}
+
+.quick-nav-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.quick-nav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.quick-nav-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: var(--bg-main);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  text-decoration: none;
+  color: var(--text-main);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.quick-nav-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary);
+}
+
+.quick-nav-card .q-icon {
+  font-size: 1.8rem;
+  line-height: 1;
+  background: var(--bg-card);
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+
+.quick-nav-card .q-text h4 {
+  font-size: 0.98rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: var(--text-main);
+}
+
+.quick-nav-card:hover .q-text h4 {
+  color: var(--primary);
+}
+
+.quick-nav-card .q-text p {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Modal User Guide Walkthrough */
+.guide-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(5px);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.25s ease;
+}
+
+.guide-modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.guide-modal {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  max-width: 720px;
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+  transform: scale(0.95);
+  transition: transform 0.25s ease;
+  overflow: hidden;
+}
+
+.guide-modal-overlay.active .guide-modal {
+  transform: scale(1);
+}
+
+.guide-modal-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg-main);
+}
+
+.guide-modal-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.guide-modal-close {
+  background: transparent;
+  border: none;
+  font-size: 1.4rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  line-height: 1;
+  padding: 4px;
+  border-radius: 4px;
+  transition: color 0.15s;
+}
+
+.guide-modal-close:hover {
+  color: var(--danger);
+}
+
+.guide-modal-body {
+  padding: 24px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.guide-step-card {
+  display: flex;
+  gap: 16px;
+  background: var(--bg-main);
+  padding: 16px;
+  border-radius: var(--radius-md);
+  border-left: 4px solid var(--primary);
+}
+
+.guide-step-num {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.95rem;
+  flex-shrink: 0;
+}
+
+.guide-step-content h5 {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 4px;
+}
+
+.guide-step-content p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.guide-modal-footer {
+  padding: 16px 24px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg-main);
+}
+
+.guide-modal-submit-btn {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 10px 22px;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.guide-modal-submit-btn:hover {
+  background: var(--primary-hover);
+}
+
 </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1301,6 +1613,15 @@ html[data-lang="bi"] p.lang-en {
             <i class="fas fa-chevron-left"></i>
           </button>
         </div>
+      </div>
+
+      <!-- User Guide Help Button in Sidebar -->
+      <div style="padding: 12px 16px 4px 16px;">
+        <button class="btn-header" id="open-tour-btn-sidebar" style="width: 100%; justify-content: center; background: #2563eb; color: #fff; border-color: #2563eb; font-size: 0.82rem; padding: 8px 12px;">
+          <i class="fas fa-circle-question"></i>
+          <span class="lang-vi">Hướng dẫn sử dụng web</span>
+          <span class="lang-en">How to Use This Site</span>
+        </button>
       </div>
 
       <!-- Student ID Replacer Box -->
@@ -1417,6 +1738,13 @@ html[data-lang="bi"] p.lang-en {
         </div>
 
         <div class="header-actions">
+          <!-- User Guide Button in Header -->
+          <button class="btn-header" id="open-tour-btn" style="background: #2563eb; color: #fff; border-color: #2563eb;">
+            <i class="fas fa-circle-question"></i>
+            <span class="lang-vi">Hướng dẫn sử dụng</span>
+            <span class="lang-en">User Guide</span>
+          </button>
+
           <!-- Bilingual Language Switcher -->
           <div class="lang-switcher" title="Chuyển đổi ngôn ngữ / Switch Language">
             <button class="lang-btn active" data-lang="vi">🇻🇳 VN</button>
@@ -1472,6 +1800,78 @@ html[data-lang="bi"] p.lang-en {
                 <span class="lang-en">Normalized to Curriculum</span>
               </span>
             </div>
+          </div>
+        </div>
+
+        <!-- Callout Notice for Newcomers -->
+        <div class="user-notice-box">
+          <div class="notice-icon">📢</div>
+          <div class="notice-content">
+            <strong>
+              <span class="lang-vi">Bạn là người mới và chưa hiểu website này dùng để làm gì?</span>
+              <span class="lang-en">New here and wondering what this website is for?</span>
+            </strong>
+            <p>
+              <span class="lang-vi">Đây là <strong>Cẩm nang học tập & tra cứu điện tử</strong> dành cho sinh viên môn MIS (IS091IU) tại trường ĐH Quốc Tế (HCMIU), hướng dẫn chi tiết từng bước thao tác thực hành. Website này <em>KHÔNG PHẢI</em> là trang web SAP thật để đăng nhập. Hãy mở song song cổng SAP Fiori của trường ở tab bên cạnh và làm theo hướng dẫn trong sách này!</span>
+              <span class="lang-en">This is a <strong>digital lab handbook</strong> for students taking the MIS course (IS091IU) at HCMIU, providing step-by-step practical guides. This website is <em>NOT</em> the live SAP system. Please open your university's live SAP Fiori Launchpad in a side window and follow this guide!</span>
+            </p>
+          </div>
+          <button class="notice-btn" id="open-tour-btn-banner">
+            <i class="fas fa-compass"></i>
+            <span class="lang-vi">Xem hướng dẫn 2 phút</span>
+            <span class="lang-en">Quick 2-Min Tour</span>
+          </button>
+        </div>
+
+        <!-- Quick Navigation Hub -->
+        <div class="quick-nav-hub">
+          <div class="quick-nav-title">
+            <span class="lang-vi">🚀 Bạn muốn làm gì hôm nay? (Lối tắt nhanh cho người mới)</span>
+            <span class="lang-en">🚀 What do you want to do today? (Quick Start Hub)</span>
+          </div>
+          <div class="quick-nav-grid">
+            <a href="#chapter-intro" class="quick-nav-card">
+              <div class="q-icon">🏢</div>
+              <div class="q-text">
+                <h4><span class="lang-vi">1. Giới Thiệu & Số Sinh Viên (###)</span><span class="lang-en">1. Intro & Student ID (###)</span></h4>
+                <p><span class="lang-vi">Tìm hiểu mô hình Global Bike và cách nhập số định danh để tự động đồng bộ mã đề.</span><span class="lang-en">Understand Global Bike architecture and sync your 3-digit student ID.</span></p>
+              </div>
+            </a>
+            <a href="#chapter-sd" class="quick-nav-card">
+              <div class="q-icon">🛒</div>
+              <div class="q-text">
+                <h4><span class="lang-vi">2. Làm Bài Lab Bán Hàng (SD)</span><span class="lang-en">2. Sales & Distribution (SD)</span></h4>
+                <p><span class="lang-vi">14 bước chu trình bán xe OTC: Tạo khách hàng, báo giá, lệnh giao hàng, xuất kho & thu tiền.</span><span class="lang-en">14-step OTC cycle: Create customer, quotation, delivery, goods issue & payment.</span></p>
+              </div>
+            </a>
+            <a href="#chapter-mm" class="quick-nav-card">
+              <div class="q-icon">📦</div>
+              <div class="q-text">
+                <h4><span class="lang-vi">3. Làm Bài Lab Mua Hàng (MM)</span><span class="lang-en">3. Materials Management (MM)</span></h4>
+                <p><span class="lang-vi">24 bước chu trình mua khóa xích P2P: Tạo vendor, đấu thầu RFQ, nhập kho 2 đợt & thanh toán.</span><span class="lang-en">24-step P2P cycle: Create vendor, RFQ bidding, 2-stage GR & payment.</span></p>
+              </div>
+            </a>
+            <a href="#chapter-fi" class="quick-nav-card">
+              <div class="q-icon">🏛️</div>
+              <div class="q-text">
+                <h4><span class="lang-vi">4. Làm Bài Lab Kế Toán (FI)</span><span class="lang-en">4. Financial Accounting (FI)</span></h4>
+                <p><span class="lang-vi">12 bước nghiệp vụ Sổ cái: Mở tài khoản, chuyển tiền liên ngân hàng & hạch toán chi phí thuê văn phòng.</span><span class="lang-en">12-step FI cycle: G/L accounts, bank transfer & office lease expense posting.</span></p>
+              </div>
+            </a>
+            <a href="#section-t-accounts" class="quick-nav-card">
+              <div class="q-icon">⚖️</div>
+              <div class="q-text">
+                <h4><span class="lang-vi">5. Bút Toán Chữ T & Tra Cứu App</span><span class="lang-en">5. T-Accounts & Fiori Finder</span></h4>
+                <p><span class="lang-vi">Xem trực quan dòng tiền Nợ/Có của từng giao dịch và tra cứu mã T-code tương đương.</span><span class="lang-en">Visualize debit/credit flow across cycles and look up traditional T-codes.</span></p>
+              </div>
+            </a>
+            <a href="#chapter-midterm" class="quick-nav-card">
+              <div class="q-icon">🎓</div>
+              <div class="q-text">
+                <h4><span class="lang-vi">6. Ôn Thi Midterm & Trắc Nghiệm</span><span class="lang-en">6. Midterm Exam Prep & Quiz</span></h4>
+                <p><span class="lang-vi">Lý thuyết Michael Porter, đáp án báo cáo Nhóm 7 và làm thử bộ 10 câu trắc nghiệm giữa kỳ.</span><span class="lang-en">Porter's 5 forces, verified Group 7 report solutions & 10 interactive exam quiz questions.</span></p>
+              </div>
+            </a>
           </div>
         </div>
 
@@ -7118,6 +7518,107 @@ html[data-lang="bi"] p.lang-en {
     </main>
   </div>
 
+  <!-- User Guide & Walkthrough Modal -->
+  <div id="welcome-tour-modal" class="guide-modal-overlay">
+    <div class="guide-modal">
+      <div class="guide-modal-header">
+        <div class="guide-modal-title">
+          <i class="fas fa-book-bookmark" style="color: var(--primary);"></i>
+          <span>
+            <span class="lang-vi">Hướng Dẫn Sử Dụng Cẩm Nang SAP Fiori</span>
+            <span class="lang-en">SAP Fiori Master Guidebook - User Guide</span>
+          </span>
+        </div>
+        <button class="guide-modal-close" id="close-tour-modal-btn" title="Đóng / Close">&times;</button>
+      </div>
+
+      <div class="guide-modal-body">
+        <div class="guide-step-card" style="border-left-color: #ef4444;">
+          <div class="guide-step-num" style="background: #ef4444;">1</div>
+          <div class="guide-step-content">
+            <h5>
+              <span class="lang-vi">Mục Đích Của Website Này Là Gì?</span>
+              <span class="lang-en">What Is the Purpose of This Website?</span>
+            </h5>
+            <p>
+              <span class="lang-vi">Đây là <strong>Cẩm nang học tập & tra cứu điện tử</strong> dành cho sinh viên môn MIS (IS091IU) tại trường ĐH Quốc Tế - ĐHQG-HCM. Website này <strong>KHÔNG PHẢI</strong> là phần mềm SAP thật để bạn đăng nhập làm việc. Bạn hãy mở song song một cửa sổ SAP Fiori Launchpad thật của trường bên cạnh để vừa xem hướng dẫn vừa thực hành!</span>
+              <span class="lang-en">This is an <strong>interactive electronic lab handbook</strong> for students taking the MIS course (IS091IU) at HCMIU. This site is <strong>NOT</strong> the live SAP system. Please open your live university SAP Fiori Launchpad in a side window and follow this manual step by step!</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="guide-step-card" style="border-left-color: #f59e0b;">
+          <div class="guide-step-num" style="background: #f59e0b;">2</div>
+          <div class="guide-step-content">
+            <h5>
+              <span class="lang-vi">Nhập Số Định Danh Học Viên (###) Ở Khung Bên Trái</span>
+              <span class="lang-en">Enter Your 3-Digit Student ID (###)</span>
+            </h5>
+            <p>
+              <span class="lang-vi">Ở thanh menu bên trái, hãy gõ 3 chữ số định danh của bạn (ví dụ: <code>180</code> hoặc <code>045</code>). Toàn bộ tên đối tác (<code>The Bike Zone 180</code>), mã vật tư (<code>CHLK1180</code>), số tài khoản trong toàn bộ cuốn sách sẽ tự động thay đổi theo số của bạn!</span>
+              <span class="lang-en">In the left sidebar, enter your assigned 3-digit student number (e.g. <code>180</code> or <code>045</code>). All business partner names (<code>The Bike Zone 180</code>), material codes (<code>CHLK1180</code>), and accounts will automatically synchronize!</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="guide-step-card" style="border-left-color: #10b981;">
+          <div class="guide-step-num" style="background: #10b981;">3</div>
+          <div class="guide-step-content">
+            <h5>
+              <span class="lang-vi">Chọn Phân Hệ Cần Làm Bài & Xem Bảng Chỉ Dẫn Chi Tiết</span>
+              <span class="lang-en">Select Your Lab Module & Follow Field Tables</span>
+            </h5>
+            <p>
+              <span class="lang-vi">Bấm vào menu bên trái để chọn phân hệ bạn đang học: <strong>Bán hàng (SD)</strong>, <strong>Mua hàng (MM)</strong> hoặc <strong>Kế toán (FI)</strong>. Trong mỗi bước đều có bảng 3 cột chỉ rõ: <em>Tên trường (Field)</em>, <em>Giá trị cần gõ (Value)</em> và <em>Ý nghĩa nghiệp vụ</em>.</span>
+              <span class="lang-en">Select your module from the sidebar: <strong>Sales (SD)</strong>, <strong>Procurement (MM)</strong>, or <strong>Financial Accounting (FI)</strong>. Each step features a 3-column table showing exact: <em>Field Names</em>, <em>Values to enter</em>, and <em>Process explanations</em>.</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="guide-step-card" style="border-left-color: #3b82f6;">
+          <div class="guide-step-num" style="background: #3b82f6;">4</div>
+          <div class="guide-step-content">
+            <h5>
+              <span class="lang-vi">Đánh Dấu Hoàn Thành & Chụp Ảnh Báo Cáo</span>
+              <span class="lang-en">Track Completion & Capture Screenshots</span>
+            </h5>
+            <p>
+              <span class="lang-vi">Mỗi khi hoàn tất một bước trong SAP Fiori, hãy nhấn nút <strong>"Đánh dấu hoàn thành"</strong> ở cuối bước đó. Hệ thống sẽ lưu lại tiến độ để bạn không bị sót bước. Phần "Điểm kiểm tra" sẽ nhắc bạn chụp lại màn hình quan trọng để nộp báo cáo thu hoạch.</span>
+              <span class="lang-en">After finishing a step in SAP Fiori, click <strong>"Mark as Done"</strong>. The system records your local progress. The Checkpoint prompt reminds you which critical screenshots are needed for your course submission.</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="guide-step-card" style="border-left-color: #8b5cf6;">
+          <div class="guide-step-num" style="background: #8b5cf6;">5</div>
+          <div class="guide-step-content">
+            <h5>
+              <span class="lang-vi">Tra Cứu App, Bút Toán Chữ T & Luyện Thi Trắc Nghiệm</span>
+              <span class="lang-en">Fiori App Finder, T-Accounts & Exam Practice</span>
+            </h5>
+            <p>
+              <span class="lang-vi">Dùng thanh tìm kiếm ở đầu trang để gõ mã T-code (vd: <code>MIGO</code>, <code>VA01</code>, <code>FB60</code>). Kéo xuống dưới để xem trực quan sơ đồ bút toán chữ T và làm bài thi thử 10 câu trắc nghiệm sát với đề thi giữa kỳ!</span>
+              <span class="lang-en">Use the search bar to find apps by traditional SAP transaction codes (e.g. <code>MIGO</code>, <code>VA01</code>, <code>FB60</code>). Scroll down to explore visual T-Accounts and test yourself with 10 real exam practice questions!</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="guide-modal-footer">
+        <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text-muted); cursor: pointer;">
+          <input type="checkbox" id="dont-show-tour-checkbox">
+          <span class="lang-vi">Không tự động hiện lại khi mở trang</span>
+          <span class="lang-en">Don't show automatically on next visit</span>
+        </label>
+        <button class="guide-modal-submit-btn" id="dismiss-tour-btn">
+          <i class="fas fa-check"></i>
+          <span class="lang-vi">Tôi đã hiểu, bắt đầu học ngay!</span>
+          <span class="lang-en">Got it, start learning!</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <script>
 /**
  * SAP S/4HANA FIORI Master Guidebook - Interactive Application Logic
@@ -7690,6 +8191,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initQuiz();
   initCheckpoints();
   initGlobalSearch();
+  initWelcomeTour();
 });
 
 // Language Switcher (VI / EN / Bilingual)
@@ -8144,6 +8646,58 @@ function initGlobalSearch() {
       }
     });
   });
+}
+
+
+// Welcome Tour & Onboarding Modal Engine
+function initWelcomeTour() {
+  const modal = document.getElementById("welcome-tour-modal");
+  const openBtns = [
+    document.getElementById("open-tour-btn"),
+    document.getElementById("open-tour-btn-banner"),
+    document.getElementById("open-tour-btn-sidebar")
+  ];
+  const closeBtn = document.getElementById("close-tour-modal-btn");
+  const dismissBtn = document.getElementById("dismiss-tour-btn");
+  const dontShowCheck = document.getElementById("dont-show-tour-checkbox");
+
+  if (!modal) return;
+
+  function openModal() {
+    modal.classList.add("active");
+  }
+
+  function closeModal() {
+    modal.classList.remove("active");
+    if (dontShowCheck && dontShowCheck.checked) {
+      localStorage.setItem("sap_hide_tour", "true");
+    }
+  }
+
+  openBtns.forEach(btn => {
+    if (btn) btn.addEventListener("click", openModal);
+  });
+
+  if (closeBtn) closeBtn.addEventListener("click", closeModal);
+  if (dismissBtn) dismissBtn.addEventListener("click", closeModal);
+
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal.classList.contains("active")) {
+      closeModal();
+    }
+  });
+
+  // Automatically show modal on first visit if not explicitly dismissed
+  const hideTour = localStorage.getItem("sap_hide_tour");
+  if (!hideTour) {
+    setTimeout(() => {
+      openModal();
+    }, 600);
+  }
 }
 
 </script>
