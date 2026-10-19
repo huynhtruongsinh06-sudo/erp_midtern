@@ -1,0 +1,13 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Python environment & temp
+*.log
+.DS_Store
+Thumbs.db
+
+# Scratch and intermediate scripts
+*.py
+!app.js
